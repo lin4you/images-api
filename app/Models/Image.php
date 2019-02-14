@@ -45,6 +45,6 @@ class Image extends Model
     ];
 
     public function getHrefAttribute() {
-        return '';//url('/images/' . $this->id);
+        return route('render-image', ['image' => $this->id]);
     }
 }

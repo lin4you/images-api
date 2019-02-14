@@ -9,9 +9,15 @@
         </v-toolbar>
         <v-content>
             <v-container fluid>
-                <h1>content</h1>
+                <v-container grid-list-md>
+                    <v-layout row wrap>
+                        <v-flex xs12 md4 :key="img.id" v-for="img in images">
+                            <v-img :src="img.href"></v-img>
+                        </v-flex>
+                    </v-layout>
+                </v-container>
 
-                <upload-image-dialog v-if="dialog" :value.sync="dialog"></upload-image-dialog>
+                <upload-image-dialog v-if="dialog" @upload="add" :value.sync="dialog"></upload-image-dialog>
             </v-container>
         </v-content>
         <v-footer app></v-footer>
@@ -22,10 +28,23 @@
     export default {
         data() {
             return {
+                images: [],
                 dialog: false
             }
         },
         mounted() {
+            axios.get('/api/images').then(response => {
+
+                this.$set(this, 'images', response.data);
+
+            }, error => {
+
+            });
+        },
+        methods: {
+            add(img) {
+                this.images.push(img);
+            }
         }
     }
 </script>

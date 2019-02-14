@@ -124,7 +124,8 @@
                         }
                     }).then(response => {
 
-                        console.log(response.data);
+                        this.$emit('upload', response.data);
+
                         this.loading = false;
                         this.dialog = false;
 

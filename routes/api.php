@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('images', 'API\ImageController');
+Route::get('images/render/{image}', 'API\ImageController@render')->name('render-image');

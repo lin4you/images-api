@@ -83,4 +83,8 @@ class ImageController extends Controller
     {
         //
     }
+
+    public function render(Image $image) {
+        return response()->file(storage_path( "app/{$image->path}/{$image->id}.{$image->extension}"));
+    }
 }
