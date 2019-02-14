@@ -19,6 +19,10 @@ class ImageController extends Controller
         $q = Image::query();
 
         foreach ($request->all() as $key => $value) {
+            if (!$value) {
+                continue;
+            }
+
             $q->where($key, 'LIKE', "%$value%");
         }
 
